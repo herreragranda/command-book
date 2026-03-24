@@ -142,6 +142,84 @@ input[type="text"]:focus {
     color: var(--highlight);
 }
 
+.save-profile-section {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--accent);
+}
+
+.save-profile-section input {
+    flex: 1;
+    max-width: 200px;
+}
+
+.save-profile-section button {
+    padding: 0.5rem 1rem;
+}
+
+.profiles-section {
+    margin-bottom: 1.5rem;
+}
+
+.profiles-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#profiles-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.profiles-empty {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.profile-name {
+    background: transparent;
+    color: var(--text);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 0;
+}
+
+.profile-name:hover {
+    background: var(--highlight);
+    opacity: 1;
+}
+
+.profile-delete {
+    background: transparent;
+    color: var(--text-muted);
+    padding: 0.5rem 0.6rem;
+    font-size: 1rem;
+    border-radius: 0;
+    line-height: 1;
+}
+
+.profile-delete:hover {
+    background: #c0392b;
+    color: white;
+    opacity: 1;
+}
+
 .config-item input {
     max-width: 100%;
 }
@@ -181,6 +259,18 @@ button:hover {
 
 #command-list li:hover {
     border-left-color: var(--highlight);
+}
+
+.command-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.command-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 .command-name {

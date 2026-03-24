@@ -3,120 +3,140 @@
         "name": "update kubeconfig",
         "description": "Configurar kubeconfig con el cluster EKS especificado.",
         "command": "aws eks update-kubeconfig --name <cluster_name> --region <region>",
-        "type": "aws"
+        "type": "aws",
+        "icon": "img/aws.png"
     },
     {
         "name": "set namespace",
         "description": "Configurar el namespace actual en kubectl.",
         "command": "kubectl config set-context --current --namespace=<namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "get pods",
         "description": "Listar todos los pods en el namespace.",
         "command": "kubectl get pods -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "get all resources",
         "description": "Obtener todos los recursos de un namespace.",
         "command": "kubectl get all -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "logs pod",
         "description": "Ver logs de un pod específico.",
         "command": "kubectl logs pod/<pod_name> -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "logs filter findstr",
         "description": "Buscar texto en los logs de un pod (Windows).",
         "command": "kubectl logs pod/<pod_name> -n <namespace> | findstr \"<search_term>\"",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "logs filter grep",
         "description": "Buscar texto en los logs de un pod (Linux/Mac).",
         "command": "kubectl logs pod/<pod_name> -n <namespace> | grep <search_term>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "describe deployment",
         "description": "Describir el estado actual de un deployment.",
         "command": "kubectl describe deployment <deployment_name> -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "describe pod",
         "description": "Describir el estado actual de un pod.",
         "command": "kubectl describe pod <pod_name> -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "describe replicaset",
         "description": "Describir el estado de un replicaset.",
         "command": "kubectl describe replicaset.apps/<replicaset_name> -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "exec into pod",
         "description": "Entrar a la shell de un pod.",
         "command": "kubectl exec -it <pod_name> -n <namespace> sh",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "rollout restart",
         "description": "Reiniciar un deployment (recrear pods).",
         "command": "kubectl rollout restart deployment <deployment_name> -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "delete pod",
         "description": "Eliminar un pod específico.",
         "command": "kubectl delete pod/<pod_name> -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "delete deployment",
         "description": "Eliminar un deployment completo.",
         "command": "kubectl delete deployment.apps/<deployment_name> -n <namespace>",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "get deployments yaml",
         "description": "Obtener deployments en formato YAML.",
         "command": "kubectl get deployments -n <namespace> -o yaml",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "get services yaml",
         "description": "Obtener services en formato YAML.",
         "command": "kubectl get services -n <namespace> -o yaml",
-        "type": "kubernetes"
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
     },
     {
         "name": "get virtualservices yaml",
         "description": "Obtener VirtualServices de Istio en formato YAML.",
         "command": "kubectl get virtualServices -n <namespace> -o yaml",
-        "type": "istio"
+        "type": "istio",
+        "icon": "img/istio.png"
     },
     {
         "name": "get requestauthentication",
         "description": "Obtener RequestAuthentication de Istio.",
         "command": "kubectl get requestauthentication -n <namespace> -o yaml",
-        "type": "istio"
+        "type": "istio",
+        "icon": "img/istio.png"
     },
     {
         "name": "get authorizationpolicy",
         "description": "Obtener AuthorizationPolicy de Istio.",
         "command": "kubectl get authorizationpolicy -n <namespace> -o yaml",
-        "type": "istio"
+        "type": "istio",
+        "icon": "img/istio.png"
     },
     {
         "name": "delete authorizationpolicy",
         "description": "Eliminar una AuthorizationPolicy específica.",
         "command": "kubectl delete authorizationpolicy <policy_name> -n <namespace>",
-        "type": "istio"
+        "type": "istio",
+        "icon": "img/istio.png"
     }
 ]

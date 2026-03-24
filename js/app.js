@@ -22,6 +22,13 @@ function initSearch() {
 function initConfig() {
     const container = document.getElementById('config-grid');
     Config.render(container, applyAndRender);
+    
+    const saveContainer = document.getElementById('save-profile-container');
+    const profilesList = document.getElementById('profiles-list');
+    
+    Config.setOnProfileChange(applyAndRender);
+    Config.renderSaveSection(saveContainer, profilesList);
+    Config.renderProfiles(profilesList);
 }
 
 async function init() {

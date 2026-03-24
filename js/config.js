@@ -71,4 +71,126 @@ function replaceVariables(text) {
     return result;
 }
 
-export { CONFIG_FIELDS, config, load, save, set, render, replaceVariables };
+// Profile management
+const PROFILES_KEY = 'config_profiles';
+
+function getProfiles() {
+    const saved = localStorage.getItem(PROFILES_KEY);
+    return saved ? JSON.parse(saved) : {};
+}
+
+function saveProfiles(profiles) {
+    localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+}
+
+function saveProfile(name) {
+    if (!name || !name.trim()) return false;
+    const profiles = getProfiles();
+    profiles[name.trim()] = { ...config };
+    saveProfiles(profiles);
+    return true;
+}
+
+function loadProfile(name) {
+    const profiles = getProfiles();
+    if (!profiles[name]) return false;
+    
+    const profile = profiles[name];
+    CONFIG_FIELDS.forEach(field => {
+        config[field.key] = profile[field.key] || '';
+        const input = document.getElementById(`${field.key}-input`);
+        if (input) input.value = config[field.key];
+    });
+    save();
+    return true;
+}
+
+function deleteProfile(name) {
+    const profiles = getProfiles();
+    delete profiles[name];
+    saveProfiles(profiles);
+}
+
+let onProfileChange = () => {};
+
+function setOnProfileChange(callback) {
+    onProfileChange = callback;
+}
+
+function renderProfiles(container) {
+    container.innerHTML = '';
+    const profiles = getProfiles();
+    const profileNames = Object.keys(profiles);
+    
+    if (profileNames.length === 0) {
+        const empty = document.createElement('span');
+        empty.className = 'profiles-empty';
+        empty.textContent = 'No saved profiles';
+        container.appendChild(empty);
+        return;
+    }
+    
+    profileNames.forEach(name => {
+        const item = document.createElement('div');
+        item.className = 'profile-item';
+        
+        const nameBtn = document.createElement('button');
+        nameBtn.className = 'profile-name';
+        nameBtn.textContent = name;
+        nameBtn.title = 'Load this profile';
+        nameBtn.addEventListener('click', () => {
+            loadProfile(name);
+            onProfileChange();
+        });
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'profile-delete';
+        deleteBtn.textContent = '×';
+        deleteBtn.title = 'Delete profile';
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (confirm(`Delete profile "${name}"?`)) {
+                deleteProfile(name);
+                renderProfiles(container);
+            }
+        });
+        
+        item.appendChild(nameBtn);
+        item.appendChild(deleteBtn);
+        container.appendChild(item);
+    });
+}
+
+function renderSaveSection(container, profilesContainer) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'save-profile-section';
+    
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'profile-name-input';
+    input.placeholder = 'Profile name...';
+    
+    const btn = document.createElement('button');
+    btn.textContent = 'Save';
+    btn.addEventListener('click', () => {
+        const name = input.value;
+        if (saveProfile(name)) {
+            input.value = '';
+            renderProfiles(profilesContainer);
+        }
+    });
+    
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') btn.click();
+    });
+    
+    wrapper.appendChild(input);
+    wrapper.appendChild(btn);
+    container.appendChild(wrapper);
+}
+
+export { 
+    CONFIG_FIELDS, config, load, save, set, render, replaceVariables,
+    getProfiles, saveProfile, loadProfile, deleteProfile, 
+    renderProfiles, renderSaveSection, setOnProfileChange
+};
