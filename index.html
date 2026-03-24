@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Command book</title>
+    <script type="module" src="js/app.js"></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    
+    <h1>Command Book</h1>
+    <input type="text" id="search-input" placeholder="Search commands...">
+    <div class="filter-section">
+        <span class="filter-label">Filter by type:</span>
+        <div id="type-filters"></div>
+    </div>
+    <details class="config-panel">
+        <summary>Configuration</summary>
+        <div class="config-grid" id="config-grid"></div>
+    </details>
+    <ul id="command-list"></ul>
 </body>
 </html>
