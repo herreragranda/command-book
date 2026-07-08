@@ -63,6 +63,13 @@
         "icon": "img/kubernetes.png"
     },
     {
+        "name": "get pod labels",
+        "description": "Listar etiquetas de un pod específico en un namespace.",
+        "command": "kubectl get pod <pod_name> --show-labels -n <namespace>",
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
+    },
+    {
         "name": "describe replicaset",
         "description": "Describir el estado de un replicaset.",
         "command": "kubectl describe replicaset.apps/<replicaset_name> -n <namespace>",
