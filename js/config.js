@@ -3,10 +3,12 @@ const CONFIG_FIELDS = [
     { key: 'cluster_name', placeholder: 'ej: eks-clientes-dev' },
     { key: 'region', placeholder: 'ej: us-east-1' },
     { key: 'pod_name', placeholder: 'ej: my-pod-abc123' },
+    { key: 'selector_label_pod', placeholder: 'ej: app-pod-label' },
+    { key: 'selector_label_app', placeholder: 'ej: app-label' },
     { key: 'deployment_name', placeholder: 'ej: my-deployment' },
     { key: 'replicaset_name', placeholder: 'ej: my-replicaset-xyz' },
     { key: 'policy_name', placeholder: 'ej: jwt-validator-policy' },
-    { key: 'search_term', placeholder: 'ej: ERROR' }
+    { key: 'search_term', placeholder: 'ej: ERROR | MESSAGE-ID' }
 ];
 
 const config = {};

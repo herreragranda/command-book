@@ -49,6 +49,13 @@
         "icon": "img/kubernetes.png"
     },
     {
+        "name": "logs by label and message id",
+        "description": "Ver logs de pods por etiqueta [label] y buscar por el termino de búsqueda [search_term].",
+        "command": "kubectl logs -l pod=<selector_label_pod> --prefix -n <namespace> 2>&1 | findstr \"<search_term>\"",
+        "type": "kubernetes",
+        "icon": "img/kubernetes.png"
+    },
+    {
         "name": "describe deployment",
         "description": "Describir el estado actual de un deployment.",
         "command": "kubectl describe deployment <deployment_name> -n <namespace>",
