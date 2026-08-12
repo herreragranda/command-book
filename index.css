@@ -21,6 +21,7 @@ body {
     padding: 2rem;
     max-width: 900px;
     margin: 0 auto;
+    padding-bottom: 80px;
 }
 
 h1 {
@@ -49,7 +50,18 @@ input[type="text"]:focus {
 }
 
 #search-input {
-    margin-bottom: 1rem;
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 350px;
+    width: calc(100% - 30px);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    background: var(--accent);
+    border: 2px solid var(--highlight);
+    border-radius: 20px;
 }
 
 .filter-section {
@@ -308,4 +320,72 @@ button:hover {
 
 #command-list button:hover {
     background: var(--highlight);
+}
+
+.favorite-button {
+    background: transparent;
+    color: var(--text-muted);
+    padding: 0.2rem 0.4rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.favorite-button:hover {
+    color: #ffd700;
+}
+
+.favorite-button.active {
+    color: #ffd700;
+}
+
+.info-button {
+    background: var(--accent);
+    color: var(--text-muted);
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: auto;
+    transition: all 0.2s;
+}
+
+.info-button:hover {
+    background: var(--highlight);
+    color: white;
+}
+
+.command-explanation {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    opacity: 0;
+    transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
+}
+
+.command-explanation.show {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.command-explanation p {
+    background: var(--bg);
+    padding: 0.75rem;
+    border-left: 3px solid var(--highlight);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
 }

@@ -1,5 +1,6 @@
 let activeTypes = new Set();
 let onFilterChange = () => {};
+let favorites = new Set();
 
 function setOnFilterChange(callback) {
     onFilterChange = callback;
@@ -14,10 +15,32 @@ function load() {
     if (saved) {
         activeTypes = new Set(JSON.parse(saved));
     }
+    
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+        favorites = new Set(JSON.parse(savedFavorites));
+    }
 }
 
 function save() {
     localStorage.setItem('activeTypes', JSON.stringify([...activeTypes]));
+}
+
+function saveFavorites() {
+    localStorage.setItem('favorites', JSON.stringify([...favorites]));
+}
+
+function toggleFavorite(commandName) {
+    if (favorites.has(commandName)) {
+        favorites.delete(commandName);
+    } else {
+        favorites.add(commandName);
+    }
+    saveFavorites();
+}
+
+function isFavorite(commandName) {
+    return favorites.has(commandName);
 }
 
 function render(types) {
@@ -68,6 +91,14 @@ function apply(commands) {
         );
     }
     
+    // Ordenar favoritos primero
+    filtered.sort((a, b) => {
+        const aIsFav = isFavorite(a.name);
+        const bIsFav = isFavorite(b.name);
+        if (aIsFav === bIsFav) return 0;
+        return aIsFav ? -1 : 1;
+    });
+    
     return filtered;
 }
 
@@ -77,4 +108,4 @@ function initWithTypes(types) {
     }
 }
 
-export { load, save, render, apply, getUniqueTypes, initWithTypes, setOnFilterChange };
+export { load, save, render, apply, getUniqueTypes, initWithTypes, setOnFilterChange, toggleFavorite, isFavorite, saveFavorites };

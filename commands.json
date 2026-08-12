@@ -2,6 +2,7 @@
     {
         "name": "update kubeconfig",
         "description": "Configurar kubeconfig con el cluster EKS especificado.",
+        "explanation": "Descarga las credenciales del cluster EKS de AWS y las agrega a tu kubeconfig (~/.kube/config). Así kubectl puede autenticarse con el cluster.",
         "command": "aws eks update-kubeconfig --name <cluster_name> --region <region>",
         "type": "aws",
         "icon": "img/aws.png"
@@ -9,6 +10,7 @@
     {
         "name": "set namespace",
         "description": "Configurar el namespace actual en kubectl.",
+        "explanation": "Establece el namespace por defecto en tu contexto actual. Así no necesitas especificar -n <namespace> en cada comando.",
         "command": "kubectl config set-context --current --namespace=<namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -16,6 +18,7 @@
     {
         "name": "get pods",
         "description": "Listar todos los pods en el namespace.",
+        "explanation": "Muestra un listado de todos los pods con su estado (Running, Pending, Failed, etc.), imagen y cantidad de reinicios.",
         "command": "kubectl get pods -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -23,6 +26,7 @@
     {
         "name": "get all resources",
         "description": "Obtener todos los recursos de un namespace.",
+        "explanation": "Lista todos los recursos principales (pods, services, deployments, replicasets, etc.) en el namespace especificado en una sola vista.",
         "command": "kubectl get all -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -30,6 +34,7 @@
     {
         "name": "logs pod",
         "description": "Ver logs de un pod específico.",
+        "explanation": "Imprime los logs (stdout) del contenedor del pod. Útil para debugging y ver qué está pasando dentro del contenedor.",
         "command": "kubectl logs pod/<pod_name> -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -37,6 +42,7 @@
     {
         "name": "logs filter findstr",
         "description": "Buscar texto en los logs de un pod (Windows).",
+        "explanation": "Filtra los logs del pod buscando una palabra clave específica usando findstr (equivalente de grep en Windows).",
         "command": "kubectl logs pod/<pod_name> -n <namespace> | findstr \"<search_term>\"",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -44,6 +50,7 @@
     {
         "name": "logs filter grep",
         "description": "Buscar texto en los logs de un pod (Linux/Mac).",
+        "explanation": "Filtra los logs del pod buscando una palabra clave específica usando grep. Muestra solo las líneas que coinciden.",
         "command": "kubectl logs pod/<pod_name> -n <namespace> | grep <search_term>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -51,6 +58,7 @@
     {
         "name": "logs by label and message id",
         "description": "Ver logs de pods por etiqueta [label] y buscar por el termino de búsqueda [search_term].",
+        "explanation": "Busca pods con una etiqueta específica y muestra sus logs filtrados. -l selecciona por label, --prefix añade nombre del pod, y busca el término.",
         "command": "kubectl logs -l pod=<selector_label_pod> --prefix -n <namespace> 2>&1 | findstr \"<search_term>\"",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -58,6 +66,7 @@
     {
         "name": "describe deployment",
         "description": "Describir el estado actual de un deployment.",
+        "explanation": "Muestra información detallada del deployment: replicas deseadas, actuales, eventos recientes y condiciones. Útil para diagnosticar problemas.",
         "command": "kubectl describe deployment <deployment_name> -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -65,6 +74,7 @@
     {
         "name": "describe pod",
         "description": "Describir el estado actual de un pod.",
+        "explanation": "Muestra detalles completos del pod: estado, IP, volúmenes, eventos y condiciones. Muy útil para ver por qué un pod falló.",
         "command": "kubectl describe pod <pod_name> -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -72,6 +82,7 @@
     {
         "name": "get pod labels",
         "description": "Listar etiquetas de un pod específico en un namespace.",
+        "explanation": "Muestra todas las etiquetas (labels) asignadas al pod. Las etiquetas se usan para seleccionar y agrupar recursos.",
         "command": "kubectl get pod <pod_name> --show-labels -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -79,6 +90,7 @@
     {
         "name": "describe replicaset",
         "description": "Describir el estado de un replicaset.",
+        "explanation": "Muestra información del replicaset: pods disponibles, deseados, eventos. Ayuda a entender por qué no se crean suficientes pods.",
         "command": "kubectl describe replicaset.apps/<replicaset_name> -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -86,6 +98,7 @@
     {
         "name": "exec into pod",
         "description": "Entrar a la shell de un pod.",
+        "explanation": "Abre una terminal interactiva dentro del contenedor del pod. -it permite interactuar en tiempo real. Útil para debugging.",
         "command": "kubectl exec -it <pod_name> -n <namespace> sh",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -93,6 +106,7 @@
     {
         "name": "rollout restart",
         "description": "Reiniciar un deployment (recrear pods).",
+        "explanation": "Reinicia todos los pods del deployment sin cambiar la configuración. Causa que los pods se eliminen y recreen con el estado actual.",
         "command": "kubectl rollout restart deployment <deployment_name> -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -100,6 +114,7 @@
     {
         "name": "delete pod",
         "description": "Eliminar un pod específico.",
+        "explanation": "Elimina un pod. Si está gestión por un deployment, el deployment creará uno nuevo automáticamente.",
         "command": "kubectl delete pod/<pod_name> -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -107,6 +122,7 @@
     {
         "name": "delete deployment",
         "description": "Eliminar un deployment completo.",
+        "explanation": "Elimina el deployment y todos sus pods asociados. Esto detiene completamente la aplicación.",
         "command": "kubectl delete deployment.apps/<deployment_name> -n <namespace>",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -114,6 +130,7 @@
     {
         "name": "get deployments yaml",
         "description": "Obtener deployments en formato YAML.",
+        "explanation": "Muestra la configuración completa de los deployments en formato YAML. Útil para auditar, respaldar o modificar configuraciones.",
         "command": "kubectl get deployments -n <namespace> -o yaml",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -121,6 +138,7 @@
     {
         "name": "get services yaml",
         "description": "Obtener services en formato YAML.",
+        "explanation": "Muestra la configuración completa de los servicios en formato YAML. Incluye puertos, selectores y tipos de servicio.",
         "command": "kubectl get services -n <namespace> -o yaml",
         "type": "kubernetes",
         "icon": "img/kubernetes.png"
@@ -128,6 +146,7 @@
     {
         "name": "get virtualservices yaml",
         "description": "Obtener VirtualServices de Istio en formato YAML.",
+        "explanation": "Muestra la configuración de VirtualServices de Istio. Estos controlan el enrutamiento del tráfico entre servicios.",
         "command": "kubectl get virtualServices -n <namespace> -o yaml",
         "type": "istio",
         "icon": "img/istio.png"
@@ -135,6 +154,7 @@
     {
         "name": "get requestauthentication",
         "description": "Obtener RequestAuthentication de Istio.",
+        "explanation": "Muestra las políticas de autenticación de Istio. Controla cómo se validan y aceptan las peticiones entrantes.",
         "command": "kubectl get requestauthentication -n <namespace> -o yaml",
         "type": "istio",
         "icon": "img/istio.png"
@@ -142,6 +162,7 @@
     {
         "name": "get authorizationpolicy",
         "description": "Obtener AuthorizationPolicy de Istio.",
+        "explanation": "Muestra las políticas de autorización de Istio. Controlan qué tráfico es permitido o denegado entre servicios.",
         "command": "kubectl get authorizationpolicy -n <namespace> -o yaml",
         "type": "istio",
         "icon": "img/istio.png"
@@ -149,6 +170,7 @@
     {
         "name": "delete authorizationpolicy",
         "description": "Eliminar una AuthorizationPolicy específica.",
+        "explanation": "Elimina una política de autorización de Istio. Después de esto, el tráfico no estará restringido por esa política.",
         "command": "kubectl delete authorizationpolicy <policy_name> -n <namespace>",
         "type": "istio",
         "icon": "img/istio.png"
